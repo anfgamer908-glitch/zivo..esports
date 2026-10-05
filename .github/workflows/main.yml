@@ -1,0 +1,29 @@
+name: Build ZIVO eSports APK
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10'
+
+      - name: Create Android project
+        run: |
+          mkdir -p app/src/main/java/com/zivo/esports
+          mkdir -p app/src/main/assets
+          mkdir -p app/src/main/res/
